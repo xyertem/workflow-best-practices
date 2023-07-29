@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: demo.workflow.dev
+version: 0.0.1
+modules:
+- name: onboarding
+  type: com.sap.application.content
+  path: workflow-module
+  requires:
+  - name: wm_workflow
+    parameters:
+      content-target: true
+- name: demo.workflow.dev-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: demo.workflow.dev-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - demoworkflowdevfiorifirstusertaskuifirstusertaskui.zip
+      name: demoworkflowdevfiorifirstusertaskuifirstusertaskui
+      target-path: resources/
+- name: demoworkflowdevfiorifirstusertaskuifirstusertaskui
+  type: html5
+  path: firstusertaskui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: demo.workflow.dev-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: demo.workflow.dev-destination-service
+    parameters:
+      content-target: true
+  - name: demo.workflow.dev-repo-host
+    parameters:
+      service-key:
+        name: demo.workflow.dev-repo-host-key
+  - name: uaa_demo.workflow.dev
+    parameters:
+      service-key:
+        name: uaa_demo.workflow.dev-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: trial_demo_workflow_dev_demo_workflow_dev_repo_host
+          ServiceInstanceName: demo.workflow.dev-html5-srv
+          ServiceKeyName: demo.workflow.dev-repo-host-key
+          sap.cloud.service: trial.demo.workflow.dev
+        - Authentication: OAuth2UserTokenExchange
+          Name: trial_demo_workflow_dev_uaa_demo_workflow_dev
+          ServiceInstanceName: demo.workflow.dev-xsuaa-service
+          ServiceKeyName: uaa_demo.workflow.dev-key
+          sap.cloud.service: trial.demo.workflow.dev
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: wm_workflow
+  type: org.cloudfoundry.existing-service
+- name: demo.workflow.dev-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: demo.workflow.dev-html5-srv
+    service-plan: app-host
+- name: demo.workflow.dev-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: demo.workflow.dev-destination-service
+    service-plan: lite
+- name: uaa_demo.workflow.dev
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: demo.workflow.dev-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

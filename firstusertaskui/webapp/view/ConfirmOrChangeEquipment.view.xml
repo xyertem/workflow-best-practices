@@ -1,0 +1,4 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="demo.workflow.dev.fiori.firstusertaskui.firstusertaskui.controller.ConfirmOrChangeEquipment" displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+    </Page>
+</mvc:View>
