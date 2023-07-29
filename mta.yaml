@@ -23,6 +23,10 @@ modules:
       - demoworkflowdevfiorifirstusertaskuifirstusertaskui.zip
       name: demoworkflowdevfiorifirstusertaskuifirstusertaskui
       target-path: resources/
+    - artifacts:
+      - demoworkflowdevemployeeinfostarui.zip
+      name: demoworkflowdevemployeeinfostarui
+      target-path: resources/
 - name: demoworkflowdevfiorifirstusertaskuifirstusertaskui
   type: html5
   path: firstusertaskui
@@ -63,6 +67,16 @@ modules:
         existing_destinations_policy: ignore
   build-parameters:
     no-source: true
+- name: demoworkflowdevemployeeinfostarui
+  type: html5
+  path: employeeinfostarui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: wm_workflow
   type: org.cloudfoundry.existing-service
@@ -77,6 +91,15 @@ resources:
   parameters:
     config:
       HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
       version: 1.0.0
     service: destination
     service-name: demo.workflow.dev-destination-service
