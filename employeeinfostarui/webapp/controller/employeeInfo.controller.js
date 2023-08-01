@@ -21,8 +21,9 @@ sap.ui.define([
                 
                 onInit: function () {
                     this.getView().setModel(new sap.ui.model.json.JSONModel({
-                        text: "",
-                        result: ""
+                        name: "",
+                        surname: "",
+                        email:""
                     }));
                 },
 
@@ -32,23 +33,12 @@ sap.ui.define([
                 },
 
                 _startInstance: function (token) {
+                    var oPayload = {};
                     var model = this.getView().getModel();
-                    //var text = model.getProperty("/text");
-                    var contextJson = {
-                        "product": "Hamlet (Paperback)",
-                        "inStock": true,
-                        "inventory": 20000,
-                        "price": 7.49,
-                        "publishingDate": "1600-04-23T18:25:43.511Z",
-                        "author": {
-                            "name": "William Shakespeare"
-                        },
-                        "publishers": [
-                            "Simon & Brown",
-                            "SparkNotes",
-                            "Dover Publications"
-                        ]
-                    };
+                    oPayload.name = model.getProperty("/name");
+                    oPayload.surname = model.getProperty("/surname");
+                    oPayload.email = model.getProperty("/email");
+                    var contextJson = oPayload;
                     //var sUrl = this._getAppModulePath + "/bpmworkflowruntime/v1/workflow-instances";
                     $.ajax({
                         url: "/trialdemoworkflowdev.demoworkflowdevemployeeinfostarui/bpmworkflowruntime/v1/workflow-instances",
