@@ -14,6 +14,21 @@
             "id": "@sap/generator-fiori:basic",
             "version": "1.10.3",
             "toolsId": "e6f88411-c110-428b-9ca2-1ad0e92ba67d"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "demoworkflowdevfiorifirstusertaskuifirstusertaskui": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "create",
+                    "action": "post",
+                    "title": "",
+                    "subTitle": "",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {

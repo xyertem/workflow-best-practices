@@ -50,10 +50,10 @@ modules:
   - name: uaa_demo.workflow.dev
     parameters:
       service-key:
-        name: uaa_demo.workflow.dev-key
+        name: uaa_demo-workflow.dev-key
   parameters:
     content:
-      instance:
+      subaccount:
         destinations:
         - Name: trial_demo_workflow_dev_demo_workflow_dev_repo_host
           ServiceInstanceName: demo.workflow.dev-html5-srv
@@ -61,8 +61,8 @@ modules:
           sap.cloud.service: trial.demo.workflow.dev
         - Authentication: OAuth2UserTokenExchange
           Name: trial_demo_workflow_dev_uaa_demo_workflow_dev
-          ServiceInstanceName: demo.workflow.dev-xsuaa-service
-          ServiceKeyName: uaa_demo.workflow.dev-key
+          ServiceInstanceName: demo-workflow-dev-xsuaa-service
+          ServiceKeyName: uaa_demo-workflow.dev-key
           sap.cloud.service: trial.demo.workflow.dev
         existing_destinations_policy: ignore
   build-parameters:
@@ -109,7 +109,7 @@ resources:
   parameters:
     path: ./xs-security.json
     service: xsuaa
-    service-name: demo.workflow.dev-xsuaa-service
+    service-name: demo-workflow-dev-xsuaa-service
     service-plan: application
 parameters:
   deploy_mode: html5-repo
