@@ -22,8 +22,8 @@ sap.ui.define([
                 },*/
 
                 _emailvalidation : function(sEmail){
-                    var pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
-                    var result = sEmail.match(new escapeRegExp(pattern)) ? true : false ;
+                    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+                    var result = sEmail.match(new RegExp(pattern)) ? true : false ;
                     return result;
                 },
                 
