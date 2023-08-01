@@ -1,13 +1,18 @@
-<mvc:View controllerName="demo.workflow.dev.employeeinfostarui.controller.employeeInfo"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="_IDGenPage1" title="Workflow Start UI">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="demo.workflow.dev.employeeinfostarui.controller.employeeInfo" displayBlock="true">
+    <Page id="_IDGenPage1" title="Employee Application Form">
     <content>
         <VBox width="100%" direction="Column" id="__vbox0">
             <items>
-                <Input width="100%" id="textInput" value="{/text}"/>
-                <Button text="Start Workflow" width="100px" id="__button0" press="startWorkflow"/>
-                <Text text="{/result}" maxLines="0" id="__text0"/>
+                <sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" id="form0">
+                    <sap.ui.layout.form:content>
+                        <Label text="Name:" width="100%" id="label2"/>
+                        <Input width="100%" id="textInput" value="{/name}"/>
+                        <Label text="Surname:" id="label0"/>
+                        <Input width="100%" id="input0" value="{/surname}"/>
+                        <Label text="Email:" id="label1"/>
+                        <Input width="100%" id="input2" value="{/email}"/></sap.ui.layout.form:content>
+                </sap.ui.layout.form:SimpleForm>
+                <Button text="Start Workflow" width="100px" id="__button0" press="startWorkflow"/><Text text="{/result}" maxLines="0" id="__text0"/>
             </items>
         </VBox>
     </content>
