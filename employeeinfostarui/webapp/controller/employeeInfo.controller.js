@@ -1,10 +1,12 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    'sap/m/MessageToast',
+    "sap/base/strings/escapeRegExp"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,MessageToast,escapeRegExp) {
         "use strict";
 
         return Controller.extend("demo.workflow.dev.employeeinfostarui.controller.employeeInfo",
@@ -18,6 +20,12 @@ sap.ui.define([
     
                     return appModulePath;
                 },*/
+
+                _emailvalidation : function(sEmail){
+                    var pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
+                    var result = sEmail.match(new escapeRegExp(pattern)) ? true : false ;
+                    return result;
+                },
                 
                 onInit: function () {
                     this.getView().setModel(new sap.ui.model.json.JSONModel({
@@ -38,6 +46,8 @@ sap.ui.define([
                     oPayload.name = model.getProperty("/name");
                     oPayload.surname = model.getProperty("/surname");
                     oPayload.email = model.getProperty("/email");
+                    var validation = this._emailvalidation(oPayload.email);
+                    if(validation === false) return MessageToast.show("Invalid Email");
                     var contextJson = oPayload;
                     //var sUrl = this._getAppModulePath + "/bpmworkflowruntime/v1/workflow-instances";
                     $.ajax({
