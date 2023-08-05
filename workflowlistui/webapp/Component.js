@@ -5,12 +5,12 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "demo/workflow/dev/fiori/firstusertaskui/firstusertaskui/model/models"
+        "demo/workflow/dev/workflowlistui/workflowlistui/model/models"
     ],
     function (UIComponent, Device, models) {
         "use strict";
 
-        return UIComponent.extend("demo.workflow.dev.fiori.firstusertaskui.firstusertaskui.Component", {
+        return UIComponent.extend("demo.workflow.dev.workflowlistui.workflowlistui.Component", {
             metadata: {
                 manifest: "json"
             },
@@ -20,10 +20,7 @@ sap.ui.define([
              * @public
              * @override
              */
-
-            
             init: function () {
-                
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 
@@ -32,8 +29,6 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-
-
             }
         });
     }
