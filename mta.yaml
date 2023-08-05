@@ -27,6 +27,14 @@ modules:
       - demoworkflowdevemployeeinfostarui.zip
       name: demoworkflowdevemployeeinfostarui
       target-path: resources/
+    - artifacts:
+      - demoworkflowdevworkflowlistuiworkflowlistui.zip
+      name: demoworkflowdevworkflowlistuiworkflowlistui
+      target-path: resources/
+    - artifacts:
+      - demoworkflowdevworkflowfirstusertaskui.zip
+      name: demoworkflowdevworkflowfirstusertaskui
+      target-path: resources/
 - name: demoworkflowdevfiorifirstusertaskuifirstusertaskui
   type: html5
   path: firstusertaskui
@@ -77,6 +85,26 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: demoworkflowdevworkflowlistuiworkflowlistui
+  type: html5
+  path: workflowlistui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: demoworkflowdevworkflowfirstusertaskui
+  type: html5
+  path: workflowfirstusertaskui
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: wm_workflow
   type: org.cloudfoundry.existing-service
@@ -92,7 +120,7 @@ resources:
     config:
       HTML5Runtime_enabled: true
       init_data:
-        instance:
+        subaccount:
           destinations:
           - Authentication: NoAuthentication
             Name: ui5
