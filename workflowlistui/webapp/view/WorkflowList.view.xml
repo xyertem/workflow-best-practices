@@ -1,7 +1,11 @@
-<mvc:View controllerName="demo.workflow.dev.workflowlistui.workflowlistui.controller.WorkflowList"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="demo.workflow.dev.workflowlistui.workflowlistui.controller.WorkflowList" displayBlock="true">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <VBox width="100%" direction="Column" id="vbox0">
+                <items>
+                    <sap.ui.comp.smarttable:SmartTable width="100%" direction="Column" fitContainer="true" tableType="ResponsiveTable" header="Smart Table" enableAutoBinding="true" xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" id="table0"/>
+                </items>
+            </VBox>
+        </content>
     </Page>
 </mvc:View>

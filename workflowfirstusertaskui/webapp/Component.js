@@ -30,6 +30,14 @@ sap.ui.define(
           this.setModel(models.createDeviceModel(), "device");
 
           this.setTaskModels();
+          
+          var mOmodel = new sap.ui.model.json.JSONModel({
+            name: "",
+            surname: "",
+            email: ""
+          });
+
+          this.getView().setModel(mOmodel);
 
           this.getInboxAPI().addAction(
             {
@@ -54,6 +62,17 @@ sap.ui.define(
             },
             this
           );
+
+          this.getInboxAPI().addAction(
+            {
+              action: "REVIZED",
+              label: "Revized",
+              type: "revized"
+            },
+            function(){
+              this.completeTask(neutural)
+            }
+          )
         },
 
         setTaskModels: function () {

@@ -27,7 +27,7 @@
                             <Input
                                 width="100%"
                                 id="textInput"
-                                value="{/name}"
+                                value="{mOmodel/name}"
                             />
                             <Label
                                 text="Surname:"
@@ -36,7 +36,7 @@
                             <Input
                                 width="100%"
                                 id="input0"
-                                value="{/surname}"
+                                value="{mOmodel/surname}"
                             />
                             <Label
                                 text="Email:"
@@ -45,7 +45,7 @@
                             <Input
                                 width="100%"
                                 id="input2"
-                                value="{/email}"
+                                value="{mOmodel/email}"
                             />
                         </sap.ui.layout.form:content>
                     </sap.ui.layout.form:SimpleForm>
