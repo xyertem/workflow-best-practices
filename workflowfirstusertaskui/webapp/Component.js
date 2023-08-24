@@ -11,7 +11,7 @@ sap.ui.define(
       "demo.workflow.dev.workflowfirstusertaskui.Component",
       {
         metadata: {
-          manifest: "json",
+          manifest: "json"
         },
 
         /**
@@ -30,15 +30,13 @@ sap.ui.define(
           this.setModel(models.createDeviceModel(), "device");
 
           this.setTaskModels();
+
+          //var contextModel = new sap.ui.model.json.JSONModel(
+            //this._getTaskInstancesBaseURL() + "/context"
+          //);
+
+          //this.setModel(contextModel, "context");
           
-          var mOmodel = new sap.ui.model.json.JSONModel({
-            name: "",
-            surname: "",
-            email: ""
-          });
-
-          this.getView().setModel(mOmodel);
-
           this.getInboxAPI().addAction(
             {
               action: "APPROVE",
@@ -155,7 +153,9 @@ sap.ui.define(
 
         _refreshTaskList: function () {
           this.getInboxAPI().updateTask("NA", this.getTaskInstanceID());
-        },
+        }
+    
+        
       }
     );
   }
